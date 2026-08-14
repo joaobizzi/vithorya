@@ -1,0 +1,349 @@
+:root {
+  --indigo-noite: #1c2c4c;
+  --azul-voo: #3f6a94;
+  --horizonte-ambar: #f4a259;
+  --horizonte-rosa: #ef8c6f;
+  --nuvem: #fffaf2;
+  --dourado: #c9932f;
+  --tinta: #2a3550;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; overflow-x: hidden; }
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background:
+    radial-gradient(ellipse 80% 45% at 50% 100%, rgba(244, 162, 89, 0.55), transparent 70%),
+    radial-gradient(ellipse 60% 30% at 50% 78%, rgba(239, 140, 111, 0.45), transparent 70%),
+    linear-gradient(180deg, var(--indigo-noite) 0%, var(--azul-voo) 42%, var(--horizonte-ambar) 78%, var(--horizonte-rosa) 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  color: var(--nuvem);
+  padding: 48px 20px 110px;
+}
+
+/* ---------- Céu: estrelas ---------- */
+#ceu { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+
+.estrela {
+  position: absolute;
+  background: var(--nuvem);
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px rgba(255, 250, 240, 0.7);
+  animation: piscar 3.2s ease-in-out infinite;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.1); }
+}
+
+/* ---------- Nuvens flutuantes ---------- */
+#nuvens { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+
+.nuvem-elemento {
+  position: absolute;
+  background: rgba(255, 250, 240, var(--op, 0.5));
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: deriva linear infinite;
+}
+
+@keyframes deriva {
+  from { transform: translateX(-15vw); }
+  to { transform: translateX(115vw); }
+}
+
+/* ---------- Rota de voo ---------- */
+#rota-svg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.aviaozinho path { filter: drop-shadow(0 0 4px rgba(255, 250, 240, 0.8)); }
+
+/* ---------- Conteúdo ---------- */
+.conteudo {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 26px;
+}
+
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  color: var(--nuvem);
+  opacity: 0.85;
+  text-shadow: 0 1px 4px rgba(20, 30, 50, 0.35);
+}
+
+h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 5.6vw, 3.1rem);
+  line-height: 1.18;
+  text-shadow: 0 0 24px rgba(244, 162, 89, 0.45), 0 0 40px rgba(28, 44, 76, 0.4);
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--horizonte-ambar);
+}
+
+.subtitulo {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+  color: var(--nuvem);
+  opacity: 0.94;
+  max-width: 480px;
+  line-height: 1.55;
+  text-shadow: 0 1px 4px rgba(20, 30, 50, 0.35);
+}
+
+/* ---------- Janelinha de avião (porthole) ---------- */
+.janela {
+  width: min(230px, 62vw);
+  aspect-ratio: 4 / 5;
+  margin: 6px 0 4px;
+}
+
+.janela-anel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% / 58%;
+  padding: 14px;
+  background: linear-gradient(160deg, var(--dourado), var(--azul-voo));
+  box-shadow: 0 18px 40px rgba(20, 30, 50, 0.5), inset 0 0 0 2px rgba(255, 250, 240, 0.25);
+}
+
+.rebite {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--nuvem);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+}
+
+.rebite:nth-child(1) { left: 50%; top: 4%; }
+.rebite:nth-child(2) { left: 82%; top: 15%; }
+.rebite:nth-child(3) { left: 96%; top: 50%; }
+.rebite:nth-child(4) { left: 82%; top: 85%; }
+.rebite:nth-child(5) { left: 50%; top: 96%; }
+.rebite:nth-child(6) { left: 18%; top: 85%; }
+.rebite:nth-child(7) { left: 4%; top: 50%; }
+.rebite:nth-child(8) { left: 18%; top: 15%; }
+
+.janela-vidro {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50% / 58%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #cfe4f2, var(--nuvem));
+}
+
+.janela-vidro img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.foto-placeholder {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--azul-voo);
+  text-align: center;
+  padding: 14px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.foto-placeholder .fp-icone { font-size: 1.6rem; }
+
+/* ---------- Cartão de embarque ---------- */
+.cartao-embarque {
+  position: relative;
+  width: 100%;
+  background: var(--nuvem);
+  border-radius: 20px;
+  padding: 30px 30px 34px;
+  box-shadow: 0 20px 44px rgba(20, 30, 50, 0.4);
+  border: 1px solid rgba(201, 147, 47, 0.35);
+  overflow: hidden;
+  text-align: left;
+}
+
+.carimbo {
+  position: absolute;
+  top: 18px;
+  right: -14px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--horizonte-rosa);
+  border-radius: 50%;
+  color: var(--horizonte-rosa);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.35;
+  transform: rotate(-14deg);
+  animation: carimbar 0.6s ease-out 0.4s both;
+}
+
+@keyframes carimbar {
+  from { opacity: 0; transform: rotate(-14deg) scale(1.6); }
+  to { opacity: 0.85; transform: rotate(-14deg) scale(1); }
+}
+
+.ce-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--azul-voo);
+  padding-right: 92px;
+}
+
+.ce-logo span { margin-right: 4px; }
+.ce-classe { color: var(--dourado); font-weight: 700; }
+
+.ce-passageira {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ce-passageira .ce-valor {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem;
+  color: var(--tinta);
+}
+
+.ce-grade {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px 14px;
+}
+
+.ce-item { display: flex; flex-direction: column; gap: 3px; }
+
+.ce-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--dourado);
+}
+
+.ce-valor {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 0.86rem;
+  color: var(--tinta);
+  line-height: 1.3;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.ce-picotado {
+  position: relative;
+  margin: 26px -30px 22px;
+  border-top: 2px dashed rgba(42, 53, 80, 0.25);
+}
+
+.ce-picotado::before, .ce-picotado::after {
+  content: '';
+  position: absolute;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--azul-voo);
+}
+
+.ce-picotado::before { left: -9px; }
+.ce-picotado::after { right: -9px; }
+
+.ce-carta p {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1rem, 2.3vw, 1.15rem);
+  color: var(--tinta);
+  line-height: 1.65;
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: surgir 0.7s ease forwards;
+}
+
+.ce-carta p:nth-child(1) { animation-delay: 0.1s; }
+.ce-carta p:nth-child(2) { animation-delay: 0.3s; }
+.ce-carta p:nth-child(3) { animation-delay: 0.5s; }
+.ce-carta p:nth-child(4) { animation-delay: 0.7s; }
+.ce-carta p:nth-child(5) { animation-delay: 0.9s; }
+
+@keyframes surgir { to { opacity: 1; transform: translateY(0); } }
+
+.ce-assinatura { font-style: italic; margin-top: 6px !important; }
+
+.rodape {
+  position: relative;
+  z-index: 2;
+  margin-top: 32px;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--nuvem);
+  opacity: 0.88;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(20, 30, 50, 0.35);
+}
+
+@media (max-width: 480px) {
+  .cartao-embarque { padding: 26px 20px 30px; }
+  .ce-grade { grid-template-columns: 1fr 1fr; }
+  .ce-cabecalho { padding-right: 0; flex-wrap: wrap; gap: 6px; }
+  .carimbo { position: static; margin: 0 auto 16px; transform: rotate(-8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .estrela, .nuvem-elemento, .aviaozinho, .carimbo, .ce-carta p {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .carimbo { transform: rotate(-14deg) !important; }
+}

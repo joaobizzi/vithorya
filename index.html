@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartão de embarque</title>
+  <meta name="description" content="Um cartão de embarque para Vithorya">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- céu de fundo -->
+  <div id="ceu"></div>
+  <div id="nuvens"></div>
+
+  <!-- rota de voo animada, atravessando o fundo -->
+  <svg id="rota-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
+    <path id="rota" d="M -80,620 C 250,420 520,760 850,520 S 1350,260 1700,320" fill="none" stroke="rgba(255,250,240,0.4)" stroke-width="2" stroke-dasharray="1 16" stroke-linecap="round" />
+    <g class="aviaozinho">
+      <path d="M0,-6 L16,0 L0,6 L4,0 Z" fill="#fff6ec" />
+      <animateMotion dur="26s" repeatCount="indefinite" rotate="auto">
+        <mpath href="#rota" xlink:href="#rota" />
+      </animateMotion>
+    </g>
+  </svg>
+
+  <main class="conteudo">
+    <p class="eyebrow">cartão de embarque · aniversário da Vithorya </p>
+
+    <h1>Lá de cima, dizem que tudo fica pequeno.<br>
+      Só uma coisa continua do <em>mesmo tamanho</em>:<br>
+      o quanto eu gosto de você 🥰​🥰​🥰​</h1>
+
+    <p class="subtitulo">
+      Feliz aniversário (bemmmm) atrasado (mas culpa foi sua também neh ...)
+    </p>
+    <p class="subtitulo">
+      Você, que vive e nasceu de olho no céu, mas também conquistou um espacinho aqui embaixo. 💛 (e para com essa historia de baixa auto estima neh kkkkk)
+    </p>
+
+    <!-- janelinha de avião com a foto -->
+    <div class="janela">
+      <div class="janela-anel">
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <span class="rebite"></span>
+        <div class="janela-vidro">
+          <img src="vithorya" alt="Foto da Vithorya" id="foto"
+               onerror="this.style.display='none'; document.getElementById('foto-placeholder').style.display='flex';">
+          <div class="foto-placeholder" id="foto-placeholder">
+            <span class="fp-icone">✈</span>
+            <p>coloque a foto aqui:<br><strong>vithorya.jpg</strong><br>na mesma pasta do site</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cartão de embarque / carta -->
+    <section class="cartao-embarque" id="cartao">
+      <div class="carimbo">atrasado<br>mas com<br>amor ✈</div>
+
+      <header class="ce-cabecalho">
+        <div class="ce-logo"><span>✈</span> voos do niver (ATRASADO)</div>
+        <div class="ce-classe">prioritária</div>
+      </header>
+
+      <div class="ce-passageira">
+        <span class="ce-label">passageira</span>
+        <span class="ce-valor">vithorya</span>
+      </div>
+
+      <div class="ce-grade">
+        <div class="ce-item"><span class="ce-label">de</span><span class="ce-valor">aqui, bem pertinho</span></div>
+        <div class="ce-item"><span class="ce-label">para</span><span class="ce-valor">onde seus sonhos quiserem te levar</span></div>
+        <div class="ce-item"><span class="ce-label">data</span><span class="ce-valor">07 ago</span></div>
+        <div class="ce-item"><span class="ce-label">assento</span><span class="ce-valor">do meu lado, se quiser</span></div>
+        <div class="ce-item"><span class="ce-label">portão</span><span class="ce-valor">sempre aberto</span></div>
+        <div class="ce-item"><span class="ce-label">voo</span><span class="ce-valor">QUALQUER UM HAHAHAH</span></div>
+      </div>
+
+      <div class="ce-picotado" aria-hidden="true"></div>
+
+      <div class="ce-carta">
+        <p>Sei que foi sexta passada, mas separei um tempo pra fazer esse parabens direito e com carinho 😁​. Não quero dar um parabens clássico e às pressas e voce ainda nao deixa mandar flores ...</p>
+        <p>Toda vez que você fala sobre aviação dá pra ver que não é só uma profissão, é seu sonho 🥰​🥰​. Em breve vai ser você dentro do avião, de terninho fofo e cuidando de estranhos (ou aguentando ... como queira) a mais de dez mil metros de altura e ensinando todo mundo a apertar o cinto (inclusive esse meu coração, que andou meio sem cinto de segurança nenhum perto de você).</p>
+        <p>A gente ainda tá naquele voo de aproximação, sem saber direito qual é o destino final, mas gostando muito da vista lá da janela. E se depender de mim, quero continuar nessa cabine, olhando esse horizonte do seu lado, o tempo que for preciso.</p>
+        <p>Então aqui vai meu desejo de aniversário atrasado. Que esse novo ano de vida te leve tão longe quanto você sonha, com pouca turbulência, boa companhia e sempre um lugar de janela hahahaha (não tem melhor neh hahahah)</p>
+        <p class="ce-assinatura">Bem vindo aos 20 anos honey (espero estar nos seus 21 tambem hahahahah). 💛✈️<br>— seu quase-copiloto</p>
+      </div>
+    </section>
+  </main>
+
+  <p class="rodape">feito com carinho — João Pedro Bizzi Oliveira ✈</p>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
